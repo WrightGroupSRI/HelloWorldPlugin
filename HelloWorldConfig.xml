@@ -1,4 +1,4 @@
 <plugin>
   <name title="Hello World" version="1.0"/>
-  <lib libname="HelloWorld" libpath="/workspaces/HelloWorld/build/bin"/>
+  <lib libname="HelloWorld" libpath="/workspaces/helloworldplugin/build/bin"/>
 </plugin>
