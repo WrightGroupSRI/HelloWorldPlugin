@@ -20,6 +20,7 @@ It includes:
 ## Requirements
 You will need:
 - a Linux system with an X server
+  - if using a VM, you will need to enable GPU passthrough for better performance
 - docker
 - appropriate graphics drivers
 
@@ -46,14 +47,14 @@ This workflow will not typically be used for regular development but demonstrate
 
 If you prefer, you can skip this section and instead use VS Code to compile a different plugin from github as described in the "Typical workflow with the HelloWorld Plugin" section.
 
-### Build the sample plugin in the SDK container
+### Build the sample plugin using the SDK container
 
 The example plugin is in /home/vdev/CameraMotion
 
-Launch the container with a terminal using:
+From your host, launch the container with a terminal using:
 ``docker run -it labonny/vurtigo-sdk:v320 /bin/bash``
 
-This should log you in as the "vdev" user in "/home/vdev" in the container.
+This should log you in as the "vdev" user in "/home/vdev" in the container. The following commands are run inside the container.
 
 To build the sample plugin, navigate to the folder and make a build directory:
 ```
@@ -65,9 +66,9 @@ mkdir build
 - Then build using: `make -C build`
 
 ### Save the changes to a new image
-You can exit the container using the ``exit`` command from the terminal.
+You can exit the container using the ``exit`` command from the terminal. The following commands are run on your host.
 
-You can find the container name / ID using:
+You can find the container name / ID from the command line using:
 ``docker ps --all``
 
 There should be a container with the image name "labonny/vurtigo-sdk:v320" listed, whose status should show it was exited a few seconds ago.
@@ -78,9 +79,9 @@ Next, save the built plugin to a new image using the container's name / ID in pl
 You can call your image something other than "vurtigo-sdk:v320-mytest" if you wish - then you must change the instruction below to run Vurtigo from your new image.
 
 ### Running Vurtigo
-Vurtigo can be started in the same way as for the default vurtigo image, but with the name of the modified sdk image:
+Vurtigo can be started from your host in the same way as for the default vurtigo image, but with the name of the modified sdk image (remove the “–runtime=nvidia” if you are not using the nvidia runtime drivers):
 
-``x11docker -m --gpu --share /home/username/data --runtime=nvidia --network -- -p 1777:1777 -- vurtigo-sdk:v320-mytest``
+``x11docker -m --gpu --share /home/username/data --runtime=nvidia --network --xauth=trusted -- -p 1777:1777 -- vurtigo-sdk:v320-mytest``
 
 This will launch Geometry Server and Vurtigo.
 
@@ -174,3 +175,6 @@ You can then build a new vurtigo-sdk image from this Dockerfile, using:
 Be sure to modify your devcontainer.json file to specify the new image version.
 ### Qt Designer
 Plugin interfaces can be created using Qt Designer 4.8.7 to generate ".ui" files. Qt Designer can be launched from inside the Dev Container by typing "designer" in the Terminal.
+
+### Dev Container Lifecycle
+The Dev Container built using VS Code, as documented in the Typical workflow section above, is managed by VS Code. It may be rebuilt if the devcontainer.json file is changed, or on request using the "Rebuild Container" or "Rebuild and Reopen in Container" commands. A previously built Dev Container may be reused without rebuilding (if the devcontainer.json hasn't changed) using the "Reopen in Container" command.
