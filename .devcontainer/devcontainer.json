@@ -1,5 +1,5 @@
 {
-    "image": "vurtigo-sdk:latest",
+    "image": "labonny/vurtigo-sdk:latest",
     "forwardPorts": [1777],
     "runArgs":[
         "--cap-add=SYS_PTRACE",

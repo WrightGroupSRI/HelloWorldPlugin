@@ -90,7 +90,7 @@ This will launch Geometry Server and Vurtigo.
 
 #### Loading the plugin
 
-The plugin can then be loaded in Vurtigo by choosing "Load Plugin File" in the Vurtigo Plugin Browser, and selecting "/home/vdev/CameraMotion/CameraMotionConfig.xml".
+The plugin can then be loaded in Vurtigo by clicking the "Load Plugin" button in the Vurtigo Plugin Browser, and selecting "/home/vdev/CameraMotion/CameraMotionConfig.xml".
 
 ## Typical workflow with the HelloWorld plugin
 
@@ -117,11 +117,11 @@ You can instead install the extension from the command line, if you prefer:
 This plugin is set up with default VS Code settings (devcontainer.json and launch.json files) that streamline the development process.
 
 On your host machine, get the code from github:
-`git clone https://github.com/WrightGroupSRI/HelloWorld.git`
+`git clone https://github.com/WrightGroupSRI/HelloWorldPlugin.git`
 
 If you still have VS Code open from the previous step, use the File menu to open the new HelloWorld folder, otherwise switch into the new directory and launch VS Code from there:
 ```
-cd HelloWorld
+cd HelloWorldPlugin
 code .
 ```
 On opening this folder, you may see options pop up to "Reopen in Container" and "Configure" the project. Select "Reopen in Container".
@@ -141,7 +141,7 @@ Next, click the "Build" button at the bottom of the VS Code editor. Alternativel
 You should see the build progress below the main window: if it reaches 100% with an exit code of 0, it was successful.
 
 #### Loading the Plugin
-Launch Vurtigo by selecting "Run without Debugging" from the VS Code "Run" menu (or click the "Run" button in the status bar at the bottom of the VS Code editor). Click the "Load Plugin File" button in the Vurtigo Plugin Browser, and select /workspaces/HelloWorld/HelloWorldConfig.xml
+Launch Vurtigo by selecting "Run without Debugging" from the VS Code "Run" menu. Click the "Load Plugin" button in the Vurtigo Plugin Browser, and select /workspaces/HelloWorldPlugin/HelloWorldConfig.xml
 
 You can now select the "Hello World" plugin from the Plugin Browser and interact with it: this plugin creates a label.
 
