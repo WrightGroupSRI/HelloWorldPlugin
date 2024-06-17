@@ -23,6 +23,7 @@ You will need:
   - if using a VM, you will need to enable GPU passthrough for better performance
 - docker
 - appropriate graphics drivers
+- [NVIDIA container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) if you have an NVIDIA GPU
 
 For testing the atypical workflow you will need:
 - x11docker
@@ -98,6 +99,13 @@ This workflow uses a development container in [VS Code](https://code.visualstudi
 
 With this workflow, you will not need to launch Vurtigo using x11docker.
 
+### Graphics hardware support
+The default devcontainer.json file (under `./devcontainer`) is set up to run on NVIDIA: if you are using AMD or Intel graphics, replace devcontainer.json with the alternate version:
+```
+cd HelloWorldPlugin/.devcontainer
+cp devcontainer.json.alt devcontainer.json
+```
+
 ### VS Code setup
 If you don't already have Visual Studio code installed:
 
@@ -129,6 +137,8 @@ On opening this folder, you may see options pop up to "Reopen in Container" and 
 If you don't see these options, open the Command Palette (**Ctrl-Shift-P**) then start typing "Dev Containers" and select "Dev Containers: Rebuild and Reopen in Container".
 
 This will launch the Vurtigo SDK container, mounting the code into a "/workspaces" folder in this container. This may take a few seconds, and you will see the word "Dev Container" in the status bar. Your VS Code terminal and commands you run in this mode will run within the container.
+
+**Note on legacy OS** On opening the Dev Container, a warning dialog will appear saying you are about to connect to an OS version that is unsupported by Visual Studio Code. This is because the current vurtigo-sdk image is based on an older OS version: an update will be released in the near future. For now, click the "Allow" button to work with the current version. A banner with this warning will also appear near the top of the VS Code interface after opening the Dev Container.
 
 #### Building the Plugin
 
